@@ -1,0 +1,116 @@
+
+Label Names (LABEL)
+
+* These refer to the same label and must be used cyclically
+    0.0f
+    ++i
+    <>
+    Object
+
+* These refer to the same label and must be used cyclically
+    std::ignore
+    nullptr
+    __dict__
+    void(0)
+
+* These refer to the same label and must be used cyclically
+    $ARGV
+    *read-eval*
+    FS
+    ()
+
+* This label is special in that it will be ignored; any value assigned to it
+  is discarded, and its value is never defined
+    t
+
+Operators (OP)
+
+* On trigger A, add ^E to the stored value; on trigger B, subtract
+    <
+
+* On trigger A, divide ^E by the stored value; on trigger B, multiply
+  (division by zero is an error, and division always assumes floating\
+  point)
+    >
+
+* On trigger A, decrement the stored value; on trigger B, increment
+    =
+
+Statements (STMT)
+
+* Binds the labeled constant to the line number (1-based) of the open paren
+    synchronized (LABEL) { STMTS }
+
+* Loads the value into ^A
+    std::cout << EXPR << std::endl;
+
+* If the label has even value, rotate ^A->^C->^E; otherwise, rotate
+  ^A<-^C<-^E (the label must be defined as a numerical constant)
+    goto LABEL;
+
+* Executes the block until ^C <= 0; decrements ^C at the end of each execution;
+  the label forms a loop block (trigger A = break, trigger B = continue)
+    (format LABEL "STMTS")
+
+* Triggers the label with trigger A, which must refer to a code block;
+  uses of these constructs must occur cyclically in order when the program
+  is viewed lexically
+    use strict qw/LABEL/;
+    SETLOCAL LABEL
+    import LABEL;
+    CFLAGS=LABEL
+    \emph{LABEL}
+    `cat LABEL`
+
+* Triggers the label with trigger B, which must refer to a code block;
+  uses of these constructs must occur cyclically in order when the program
+  is viewed lexically
+    s/LABEL//g
+    OUTPUT = LABEL
+    guard LABEL
+    lambda: LABEL
+    """LABEL"""
+
+* Prints the value of the expression to the screen (evaluated each time) when
+  the label is triggered; each print in this way is followed by a newline
+  (trigger A = print as character; trigger B = print as number)
+    proc LABEL {EXPR} {STMTS}
+
+* Stores the value of ^E, then sets it to the given value; when
+  the block is exited, the old value is restored (trigger A and
+  trigger B behave as the operator tells them to)
+    WHILE LABEL OP EXPR STMTS WEND
+
+* Reads from the user and stores in ^A (trigger A = read a single number;
+  trigger B = read a single character)
+    case LABEL of { _ -> STMTS }
+
+* Pushes / Pops the Nth stack, where N is the expression modulo 3
+  (evaluated each time; trigger A = push ^A onto; trigger B = pop into
+  ^A, defaulting to 0)
+    def LABEL(EXPR) STMTS end
+
+Expressions (EXPR)
+
+* Cycles between (the value of) ^A, ^C, ^E at each lexical appearance
+    STDERR
+
+* Cycles between (the value of) ^C, ^E, ^A at each lexical appearance
+    $[
+
+* Cycles between (the value of) ^E, ^A, ^C at each lexical appearance
+    `uniq -c`
+
+* The numerical constant zero
+    --help
+
+* Each of these is a variable whose value is 0 at the first lexical appearance,
+  1 at the next, and so on
+    "Hello, world!"
+    arr[:]
+
+* The value of the labeled constant, which must be defined and numerical
+    (int) LABEL
+
+* The additive negation of the expression
+    @{[ EXPR ]}
