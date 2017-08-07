@@ -117,7 +117,7 @@ class Reader:
 
     def must(self, string, error = "Syntax error"):
         if not self.go(string):
-            raise ParseError(error)
+            raise ParseError(error + " on line " + str(self.line))
 
 class LabelBinder:
 
