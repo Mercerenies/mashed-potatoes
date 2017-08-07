@@ -1,0 +1,45 @@
+synchronized (std::ignore) {
+  std::cout << "Hello, world!" << std::endl;
+  case 0.0f of {
+    _ -> use strict qw/++i/;
+  }
+  goto nullptr;
+  std::cout << "Hello, world!" << std::endl;
+  def $ARGV(--help)
+    SETLOCAL *read-eval*
+    import FS;
+  end
+  goto __dict__;
+  (format t "
+    def ()(--help)
+      s/$ARGV//g
+      goto void(0);
+    end
+    goto std::ignore;
+    def *read-eval*(--help)
+      OUTPUT = FS
+    end
+    goto nullptr;
+    WHILE <> < --help
+      goto __dict__;
+      CFLAGS=Object
+      synchronized (void(0)) {
+        goto std::ignore;
+      }
+    WEND
+    def ()(--help)
+      \emph{$ARGV}
+    end synchronized (nullptr) {
+      goto __dict__;
+      def *read-eval*(--help) `cat FS` end
+    }
+    goto void(0);
+  ")
+  def ()(--help)
+    guard $ARGV
+    lambda: *read-eval*
+    proc 0.0f { STDERR } {
+      """++i"""
+    }
+  end
+}
