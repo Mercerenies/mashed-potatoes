@@ -325,7 +325,7 @@ def _print_statement(reader):
         def trigger(x):
             res = expr(env)
             if x is trigger_a:
-                print(chr(res))
+                print(chr(res), end='')
             elif x is trigger_b:
                 print(res)
             else:
