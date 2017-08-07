@@ -1,0 +1,12 @@
+
+synchronized ($ARGV) {
+  def 0.0f("Hello, world!")
+    std::cout << "Hello, world!" << std::endl;
+    use strict qw/++i/;
+    std::cout << arr[:] << std::endl;
+    s/<>//g
+    proc std::ignore {STDERR} {
+      OUTPUT = nullptr
+    }
+  end
+}
