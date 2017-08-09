@@ -4,6 +4,7 @@ from collections import defaultdict
 from numbers import Number
 import re
 import sys
+import math
 
 
 class ParseError(Exception):
@@ -327,7 +328,7 @@ def _print_statement(reader):
         def trigger(x):
             res = expr(env)
             if x is trigger_a:
-                print(chr(res), end='')
+                print(chr(math.floor(res)), end='')
             elif x is trigger_b:
                 print(res)
             else:
@@ -413,6 +414,7 @@ def _stack_statement(reader):
                 env.stack[expr(env) % 3].append(env.var_a)
             elif x is trigger_b:
                 e = expr(env)
+                e = math.floor(e)
                 if env.stack[e]:
                     env.var_a = env.stack[e][-1]
                     env.stack[e] = env.stack[e][:-1]
