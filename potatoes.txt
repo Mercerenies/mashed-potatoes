@@ -28,7 +28,7 @@ Operators (OP)
 * On trigger A, add ^E to the stored value; on trigger B, subtract
     <
 
-* On trigger A, divide ^E by the stored value; on trigger B, multiply
+* On trigger A, divide the stored value by ^E; on trigger B, multiply
   (division by zero is an error, and division always assumes floating\
   point)
     >
