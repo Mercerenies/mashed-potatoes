@@ -90,6 +90,11 @@ Statements (STMT)
   ^A, defaulting to 0)
     def LABEL(EXPR) STMTS end
 
+* Comment statement; must occur cyclically; has no effect
+  (parentheses must be balanced)
+    :S(TEXT)
+    :F(TEXT)
+
 Expressions (EXPR)
 
 * Cycles between (the value of) ^A, ^C, ^E at each lexical appearance

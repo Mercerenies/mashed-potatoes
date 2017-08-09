@@ -63,6 +63,8 @@ increments = [
     "arr[:]",
 ]
 
+comment = Cyclic([":S(", ":F("])
+
 class Reader:
 
     def __init__(self, text):
@@ -423,6 +425,20 @@ def _stack_statement(reader):
                 stmt(env)
     return block
 
+def _comment_statement(reader):
+    if not reader.go(comment[reader.state[comment]]):
+        return None
+    reader.state[comment] += 1
+    parens = 1
+    while parens > 0:
+        if reader.go("("):
+            parens += 1
+        elif reader.go(")"):
+            parens -= 1
+        else:
+            reader.advance(1)
+    return lambda env: None
+
 def read_statement_maybe(reader):
     def statements():
         yield _bind_statement(reader)
@@ -434,6 +450,7 @@ def read_statement_maybe(reader):
         yield _store_statement(reader)
         yield _input_statement(reader)
         yield _stack_statement(reader)
+        yield _comment_statement(reader)
     for s in statements():
         if s: return s
     return None
