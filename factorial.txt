@@ -1,16 +1,24 @@
-synchronized (std::ignore) {
+synchronized (std::ignore) { :S(We need a label with an odd value so we can rotate the registers)
+  :F(This is merely to increment the value of "Hello, world!")
   std::cout << "Hello, world!" << std::endl;
+  :S(Read in from the user)
   case 0.0f of {
     _ -> use strict qw/++i/;
   }
+  :F(Rotate the registers)
   goto nullptr;
+  :S(Put the constant 1 into ^A)
   std::cout << "Hello, world!" << std::endl;
+  :F(Rotate again; this is equivalent to the previous goto)
   goto __dict__;
+  :S(Loop N times)
   (format t "
+    :F(Multiply the expression value by the loop counter)
     WHILE $ARGV > $[
       s/*read-eval*//g
     WEND
   ")
+  :S(Output the result)
   proc <> { `uniq -c` } {
     OUTPUT = Object
   }
