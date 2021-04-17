@@ -391,7 +391,10 @@ def _input_statement(reader):
             if x is trigger_a:
                 env.var_a = int(input())
             elif x is trigger_b:
-                env.var_a = ord(sys.stdin.read(1))
+                try:
+                    env.var_a = ord(sys.stdin.read(1))
+                except TypeError:
+                    env.var_a = 0
             else:
                 raise SemanticError("Invalid trigger passed")
         with env.label.bind(label, trigger):
